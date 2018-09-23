@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { Box, Header, Title, Image, Article } from 'grommet';
+import { Box, Header, Image, Article } from 'grommet';
+import { Link } from 'react-router-dom'
 import NavLink from "./Components/NavLink"
 import { Route } from 'react-router'
 import 'grommet-css';
 import './App.css';
 
 import Home from "./Screens/Home"
+import About from "./Screens/About"
+import Contact from "./Screens/Contact"
+import Faq from "./Screens/FAQ"
+import Schedule from "./Screens/Schedule"
+import Sponsor from "./Screens/Sponsor"
+import LoginSignUp from "./Screens/LoginSignUp"
+// import AdminDash from "./Screens/AdminDashboard"
+// import UserDash from "./Screens/UserDashboard"
 
 class App extends Component {
 	render() {
@@ -14,11 +23,9 @@ class App extends Component {
 				<Article>
 					<Header fixed pad="none" style={{ backgroundColor: "#DF3131" }}>
 						<Box pad={{ horizontal: "large" }}>
-							<Title
-								onClick={() => { alert("oof") }}
-							>
+							<Link to="/">
 								<Image style={{ width: 167, height: 39 }} src={require('./Public/Logo.png')}></Image>
-							</Title>
+							</Link>
 						</Box>
 						<Box
 							flex={true}
@@ -37,6 +44,12 @@ class App extends Component {
 					</Header>
 					<div>
 						<Route exact path="/" component={Home} />
+						<Route exact path="/about" component={About} />
+						<Route exact path="/contact" component={Contact} />
+						<Route exact path="/faq" component={Faq} />
+						<Route exact path="/schedule" component={Schedule} />
+						<Route exact path="/sponsor" component={Sponsor} />
+						<Route exact path="/profile" component={LoginSignUp} />
 					</div>
 				</Article>
 			</div>

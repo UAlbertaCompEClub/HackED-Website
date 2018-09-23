@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { ConnectedRouter, routerMiddleware, routerReducer } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory'
 import './index.css';
@@ -12,10 +13,12 @@ const history = createHistory();
 
 const middleware = routerMiddleware(history);
 
+
+
 const store = createStore(
     combineReducers({
         router: routerReducer
-    }), applyMiddleware(middleware)
+    }), composeWithDevTools(applyMiddleware(middleware))
 )
 
 ReactDOM.render(
