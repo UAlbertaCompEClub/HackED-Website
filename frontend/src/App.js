@@ -7,7 +7,7 @@ import 'grommet-css';
 import './App.css';
 
 import Home from "./Screens/Home"
-import About from "./Screens/About"
+import Beta from './Screens/Beta'
 import Contact from "./Screens/Contact"
 import Faq from "./Screens/FAQ"
 import Schedule from "./Screens/Schedule"
@@ -20,7 +20,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Article>
+				<Box full>
 					<Header fixed pad="none" style={{ backgroundColor: "#DF3131" }}>
 						<Box pad={{ horizontal: "large" }}>
 							<Link to="/">
@@ -34,7 +34,7 @@ class App extends Component {
 							responsive={false}
 							pad={{ horizontal: "large", between: "medium" }}
 						>
-							<NavLink light href="/about">{"About".toUpperCase()}</NavLink>
+							<NavLink light href="/beta">{"Beta".toUpperCase()}</NavLink>
 							<NavLink light href="/contact">{"Contact".toUpperCase()}</NavLink>
 							<NavLink light href="/faq">{"FAQ".toUpperCase()}</NavLink>
 							<NavLink light href="/schedule">{"Schedule".toUpperCase()}</NavLink>
@@ -42,16 +42,16 @@ class App extends Component {
 							<NavLink light href="/profile">{"Login".toUpperCase()}</NavLink>
 						</Box>
 					</Header>
-					<div>
+					<Box flex>
 						<Route exact path="/" component={Home} />
-						<Route exact path="/about" component={About} />
+						<Route exact path="/beta" component={Beta} />
 						<Route exact path="/contact" component={Contact} />
 						<Route exact path="/faq" component={Faq} />
 						<Route exact path="/schedule" component={Schedule} />
 						<Route exact path="/sponsor" component={Sponsor} />
 						<Route exact path="/profile" component={LoginSignUp} />
-					</div>
-				</Article>
+					</Box>
+				</Box>
 			</div>
 		);
 	}
