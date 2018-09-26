@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
+    'rest_framework',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +127,8 @@ WEBPACK_LOADER = {
             'BUNDLE_DIR_NAME': 'bundles/',
             'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
         }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }

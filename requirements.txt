@@ -1,2 +1,4 @@
 django
 django-webpack-loader
+djangorestframework
+django-rest-knox
