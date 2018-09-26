@@ -8,6 +8,7 @@ from knox.models import AuthToken
 
 from .serializers import CreateUserSerializer, UserSerializer, LoginUserSerializer, HackEDBetaApplicationSerializer
 
+from betaapplications.models import HackEDBetaApplication
 
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateUserSerializer
@@ -47,15 +48,15 @@ class HackEDBetaApplicationAPI(APIView):
 
     permission_classes = [permissions.IsAuthenticated, ]
 
-    def get(self, request, version, format=None):
+    def get(self, request, format=None):
         """
         Get a users HackED Beta Application.
         """
-        queryset = HackEDBetaApplication.objects.filter(user=request.user)
-        serializer = HackEDBetaApplicationSerializer(queryset, many=True, context={'request': request})
-        return JsonResponse(serializer.data, safe=False)
+        queryset = HackEDBetaApplication.objects.get(user=request.user)
+        serializer = HackEDBetaApplicationSerializer(queryset, many=False, context={'request': request})
+        return Response(serializer.data)
 
-    def post(self, request, version, format=None):
+    def post(self, request, format=None):
         """
         Post a users HackED Beta Application.
         """
