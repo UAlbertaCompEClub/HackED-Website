@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Header, Image, Article } from 'grommet';
+import { Box, Header, Image,} from 'grommet';
 import { Link } from 'react-router-dom'
 import NavLink from "./Components/NavLink"
 import { Route } from 'react-router'
@@ -9,7 +9,6 @@ import './App.css';
 import Home from "./Screens/Home"
 import Beta from './Screens/Beta'
 import Contact from "./Screens/Contact"
-import Faq from "./Screens/FAQ"
 import Schedule from "./Screens/Schedule"
 import Sponsor from "./Screens/Sponsor"
 import LoginSignUp from "./Screens/LoginSignUp"
@@ -36,7 +35,6 @@ class App extends Component {
 						>
 							<NavLink light href="/beta">{"Beta".toUpperCase()}</NavLink>
 							<NavLink light href="/contact">{"Contact".toUpperCase()}</NavLink>
-							<NavLink light href="/faq">{"FAQ".toUpperCase()}</NavLink>
 							<NavLink light href="/schedule">{"Schedule".toUpperCase()}</NavLink>
 							<NavLink light href="/sponsor">{"Sponsor".toUpperCase()}</NavLink>
 							<NavLink light href="/profile">{"Login".toUpperCase()}</NavLink>
@@ -46,7 +44,6 @@ class App extends Component {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/beta" component={Beta} />
 						<Route exact path="/contact" component={Contact} />
-						<Route exact path="/faq" component={Faq} />
 						<Route exact path="/schedule" component={Schedule} />
 						<Route exact path="/sponsor" component={Sponsor} />
 						<Route exact path="/profile" component={LoginSignUp} />
