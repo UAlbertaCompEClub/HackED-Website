@@ -1,13 +1,12 @@
 from django.shortcuts import render
 
-# Create your views here.
-
 from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from knox.models import AuthToken
 
-from .serializers import CreateUserSerializer, UserSerializer, LoginUserSerializer
+from .serializers import CreateUserSerializer, UserSerializer, LoginUserSerializer, HackEDBetaApplicationSerializer
 
 
 class RegistrationAPI(generics.GenericAPIView):
@@ -40,3 +39,28 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+class HackEDBetaApplicationAPI(APIView):
+    """
+    HackED Beta Application API
+    """
+
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get(self, request, version, format=None):
+        """
+        Get a users HackED Beta Application.
+        """
+        queryset = HackEDBetaApplication.objects.filter(user=request.user)
+        serializer = HackEDBetaApplicationSerializer(queryset, many=True, context={'request': request})
+        return JsonResponse(serializer.data, safe=False)
+
+    def post(self, request, version, format=None):
+        """
+        Post a users HackED Beta Application.
+        """
+        serializer = HackEDBetaApplicationSerializer(data=request.data, many=False, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

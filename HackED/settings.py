@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework',
     'knox',
+    'api',
+    'betaapplications',
 ]
 
 MIDDLEWARE = [
