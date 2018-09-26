@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Header, Image,} from 'grommet';
+import { Box, Header, Image } from 'grommet';
 import { Link } from 'react-router-dom'
 import NavLink from "./Components/NavLink"
 import { Route } from 'react-router'
