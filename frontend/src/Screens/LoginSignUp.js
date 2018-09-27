@@ -29,6 +29,9 @@ class LoginSignUpScreen extends React.Component {
         return (
             <Box full justify="center" align="center">
                 {this.props.isSignUp ? this.renderSignUp() : this.renderLogin()}
+                <p style={styles.errorMessage}>{this.state.errorMessage.split('\n').map((item, key) => {
+                    return <span key={key}>{item}<br /></span>
+                })}</p>
             </Box>
         );
     }
@@ -38,8 +41,8 @@ class LoginSignUpScreen extends React.Component {
             [
                 <TextInput key={"0"} placeholderColor="DF3131">Email</TextInput>,
                 <TextInput key={"1"} password placeholderColor="DF3131">Password</TextInput>,
-                <Button key={"2"}>Login</Button>,
-                <NavLink key={"3"} href="#signUp">Haven't made an account? Create one now!</NavLink>
+                <Button onClick={this.validateAndLogIn.bind(this)} key={"2"}>Login</Button>,
+                <NavLink onClick={() => { this.setState({ errorMessage: "" }) }} key={"3"} href="#signUp">Haven't made an account? Create one now!</NavLink>
             ]
         )
     }
@@ -53,10 +56,7 @@ class LoginSignUpScreen extends React.Component {
                 <TextInput key={"3"} onChange={(event) => { this.setState({ signup: { ...this.state.signup, pass: event.target.value } }) }} password placeholderColor="DF3131">Password</TextInput>,
                 <TextInput key={"4"} onChange={(event) => { this.setState({ signup: { ...this.state.signup, conPass: event.target.value } }) }} password placeholderColor="DF3131">Confirm Password</TextInput>,
                 <Button key={"5"} onClick={this.validateAndSignUp.bind(this)} >Sign Up</Button>,
-                <NavLink key={"6"} href="/profile">Already have an account? Log in!</NavLink>,
-                <p style={styles.errorMessage} key="7">{this.state.errorMessage.split('\n').map((item, key) => {
-                    return <span key={key}>{item}<br /></span>
-                })}</p>
+                <NavLink onClick={() => { this.setState({ errorMessage: "" }) }} key={"6"} href="/profile">Already have an account? Log in!</NavLink>,
             ]
         )
     }
@@ -77,7 +77,7 @@ class LoginSignUpScreen extends React.Component {
 
         if (continuable) {
             console.log("to auth:\n", userInfo)
-            this.setState({ errorMessage: undefined })
+            this.setState({ errorMessage: "" })
         } else {
             let errorMessage = ""
             if (!validEmailAndAvail) { errorMessage += "Email is invalid\n" }
@@ -85,6 +85,28 @@ class LoginSignUpScreen extends React.Component {
             if (!passwordValidAndAvail) { errorMessage += "Password provided is not valid.\n Passwords must be at least 8 characters long\n" }
             if (!firstNameAvail) { errorMessage += "First Name is not provided\n" }
             if (!lastNameAvail) { errorMessage += "Last Name is not provided\n" }
+
+            this.setState({ errorMessage: errorMessage })
+        }
+    }
+
+    validateAndLogIn() {
+        let userInfo = {
+            email: this.state.login.email,
+            pass: this.state.login.pass
+        }
+
+        let validEmailAndAvail = (validateEmail(userInfo.email)) && (userInfo.email ? true : false)
+        let passwordValidAndAvail = (userInfo.pass.length >= 8) && (userInfo.pass ? true : false)
+        let continuable = validEmailAndAvail && passwordValidAndAvail
+
+        if (continuable) {
+            console.log("to auth:\n", userInfo)
+            this.setState({ errorMessage: "" })
+        } else {
+            let errorMessage = ""
+            if (!validEmailAndAvail) { errorMessage += "Email is invalid\n" }
+            if (!passwordValidAndAvail) { errorMessage += "Password provided is not valid.\n Passwords must be at least 8 characters long\n" }
 
             this.setState({ errorMessage: errorMessage })
         }

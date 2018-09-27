@@ -9,6 +9,7 @@ export default class NavLink extends React.Component {
         return (
             <div>
                 <Link
+                    onClick={this.props.onClick}
                     //has props hoverStyle
                     onMouseEnter={() => {
                         if (this.props.onMouseEnter) {
