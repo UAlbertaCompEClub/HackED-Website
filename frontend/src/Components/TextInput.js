@@ -40,5 +40,6 @@ let styles = {
         paddingBottom: "0.5em",
         fontFamily: "Open Sans",
         color: "#000000",
+        letterSpacing: "0.5px"
     }
 }

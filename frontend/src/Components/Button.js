@@ -54,6 +54,8 @@ let styles = {
 
         marginTop: "1em",
         marginBottom: "1em",
+        marginLeft: "1em",
+        marginRight: "1em",
 
         boxShadow: "0 0px 13px rgba(0,0,0,0.15)",
         transition: "all 0.5s ease",
