@@ -4,10 +4,6 @@ export default class Button extends React.Component {
 
     state = {}
 
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-
-    }
-
     render() {
 
         /* eslint-disable */
