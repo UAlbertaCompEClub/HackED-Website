@@ -1,12 +1,23 @@
 import React from 'react'
 import { Box } from 'grommet'
 
-export default class ContactScreen extends React.Component {
-    render() {
-        return (
-            <Box full align="center">
+import Text from "../Components/Text"
 
-            </Box>
-        );
-    }
+export default class ContactScreen extends React.Component {
+	state = {
+		title: "",
+		email: "",
+		question: ""
+	}
+
+	render() {
+		return (
+			<Box full flex justify="center" align="center">
+				<Text type="h1" >
+					Contact Us
+				</Text>
+				<a href="mailto:hacked.compeclub.com">hacked@compeclub.com</a>
+			</Box>
+		);
+	}
 }
